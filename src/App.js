@@ -71,17 +71,13 @@ class App extends Component {
             }
         });
 
-        console.log("new deck:", newDeck);
-
         this.setState({
             deck: newDeck
         });
-
-        console.log("deck:", this.state.deck);
     }
 
     pickCard(cardIndex) {
-        if (this.state.deck[cardIndex].isFlipped) {
+        if (this.state.deck[cardIndex] === cardIndex) {
             return;
         } else {
             const cardToFlip = {...this.state.deck[cardIndex]};
@@ -98,7 +94,7 @@ class App extends Component {
                 const card1Index = newPickedCards[0],
                       card2Index = newPickedCards[1];
 
-                if (newDeck[card1Index].symbol === newDeck[card2Index].symbol) {
+                if (newDeck[card1Index].symbol !== newDeck[card2Index].symbol) {
                     setTimeout(
                         this.unflipCards.bind(this, card1Index, card2Index),
                         1000
